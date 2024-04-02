@@ -80,17 +80,17 @@ racc で生成するパーサが理解できる文法を記述します。
 このあたりに関しては完全な対応はまず無理です。あきらめてください。
 
 左辺の値($$)は、オプションによって返し方がかわります。まずデフォルトでは
-ローカル変数 result (そのデフォルト値は val[0])が 左辺値を表し、アクション
+ローカル変数 result (そのデフォルト値は <tt>val[0]</tt>)が 左辺値を表し、アクション
 ブロックを抜けた時の result の値が左辺値になります。または明示的に return
 で返した場合もこの値になります。一方、options で no_result_var を指定した
 場合、左辺値はアクションブロックの最後の文の値になります (Ruby のメソッドと
 同じ)。
 
-どちらの場合でもアクションは省略でき、省略した場合の左辺値は常に val[0] です。
+どちらの場合でもアクションは省略でき、省略した場合の左辺値は常に <tt>val[0]</tt> です。
 
 以下に文法記述の全体の例をしめします。
 --
-rule
+  rule
   goal: def ruls source
         {
           result = val
@@ -109,14 +109,14 @@ rule
         {
           result[1] = val[1]
         }
-(略)
+  (略)
 --
 アクション内では特別な意味をもった変数がいくつか使えます。
 そのような変数を以下に示します。括弧の中は yacc での表記です。
 
   * result ($$)
 
-左辺の値。初期値は val[0] です。
+左辺の値。初期値は <tt>val[0]</tt> です。
 
   * val ($1,$2,$3…)
 
@@ -171,12 +171,12 @@ target: TERM_A nonterm_a TERM_B nonterm_b
 
 演算子の優先順位はつぎのように書いて定義します。
 --
-prechigh
+  prechigh
   nonassoc PLUSPLUS
   left     MULTI DIVIDE
   left     PLUS MINUS
   right    '='
-preclow
+  preclow
 --
 prechigh に近い行にあるほど優先順位の高いトークンです。上下をまるごと
 さかさまにして preclow...prechigh の順番に書くこともできます。left
